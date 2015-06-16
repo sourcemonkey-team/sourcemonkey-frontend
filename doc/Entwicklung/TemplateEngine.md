@@ -14,28 +14,28 @@ Hier ein Beispiel für eine solche Templatedatei:
 
 {* Footer einbinden *}
 {include file="footer.tpl"}
-'''
+```
 ##Kommentare
 
 Kommentare werden in einem bestimmten Stil gekennzeichnet dadurch werden sie später nicht auf der Homepage auftauchen:
-'''template
+```template
 {* Mein Kommentar *}
-'''
+```
 ##Includes
 
 Um andere tpl Dateien zu inkludieren müssen die Includes wie folgt definiert werden:
-'''template
+```template
 {include file="hallo.tpl"}
-'''
+```
 ##Platzhalter
 Um werte an die Templates zu übergeben kann folgender tag verwendet werden:
-'''template
+```template
 {$website_title}
-'''
+```
 Wie diese befüllt werden findet sich im Bereich "Nutzen der Templateengine"
 
 ##Templateengine einsetzen
-'''template
+```template
 include("Template.class.php");
 
 // Das Template laden
@@ -46,4 +46,4 @@ $tpl->load("index.tpl");
 $tpl->assign( "website_title", "MyHomepage" );
 
 $tpl->display(); 
-'''
+```
