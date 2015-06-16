@@ -7,7 +7,7 @@ Diese Dateien werden dynamisch vom PHP geladen und mit Inhalten verknüpft.
 Ein neues Template muss im Ordner templates/ abgelegt werden und die Dateiendung .tpl besitzen.
 
 Hier ein Beispiel für eine solche Templatedatei:
-'''template
+```template
 {* Header einbinden *}
 {include file="header.tpl"}
  <h1>Hier folgt das Hub</h1>
