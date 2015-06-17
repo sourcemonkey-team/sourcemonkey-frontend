@@ -1,0 +1,12 @@
+body{
+	background:#333;
+	color:#fff;
+}
+.mainArea{
+	width:80%;
+	float:right;
+}
+sidebar{
+	width:20%;
+	float:left;
+}

@@ -17,6 +17,7 @@
   "dependencies": {
     "jquery": "~2.1.4",
     "sass.js": "medialize/sass.js#~0.9.2",
-    "highlight.js": "isagalaev/highlight.js#~7.0.1"
+    "codemirror": "~5.3.0",
+    "normalize.css": "~3.0.3"
   }
 }
