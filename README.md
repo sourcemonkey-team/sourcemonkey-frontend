@@ -10,5 +10,14 @@
   Clone repository
   sudo npm install -g bower
   bower install
+#Verwendete Projekte
 
-Build with <3
+- jQuery
+- normalize.css
+- codemirror
+- sass.js
+- font awesome
+
+
+<> with :love: on Github
+
