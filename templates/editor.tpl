@@ -1,6 +1,6 @@
 {* Header einbinden *}
 {include file="header.tpl"}
-<h1>Editor</h1>
+
 {include file="projectExplorer.tpl"}
 <div class="mainArea">
 	<form>
