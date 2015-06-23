@@ -3,7 +3,7 @@
 
 ##Sourcemonkey is an Online HTML, CSS und Javascript Editor.
 
-
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/sourcemonkey-team/sourcemonkey-frontend?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 # Work in progress
 
 # Contribute
@@ -19,5 +19,5 @@
 - font awesome
 
 
-<> with :love: on Github
+<> with <3 on Github
 
