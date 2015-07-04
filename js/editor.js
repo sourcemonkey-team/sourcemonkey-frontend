@@ -7,7 +7,7 @@ $(function (){
 	$tabHead = $("#tabHead");
 	$editorSection = $("#editor_section");
 
-	newTab("test.js", "js", "function test(){test++;}");
+	newTab("test.js", "javascript", "function test(){test++;}");
 });
 
 function newTab(fileName, language, content){
@@ -18,7 +18,7 @@ function newTab(fileName, language, content){
 	newEditor.content = content;
 
 	$tabHead.append('<div class="tab" data-editor-id="'+id+'" onClick="setActiveEditor($(this).attr(\'data-editor-id\'))"></div>');
-	$tabHead.find( "> div[data-editor-id="+id+"]" ).html(fileName + '<button class="tab_close" >x</button>')
+	$tabHead.find( "> div[data-editor-id="+id+"]" ).html(fileName + '<button class="tab_close" onClick="closeTab(this)">x</button>')
 
 	$editorSection.append('<div data-editor-id="'+id+'" id="editor_'+id+'" class="editor"></div>');
 
@@ -27,7 +27,7 @@ function newTab(fileName, language, content){
 	newEditor.editor = CodeMirror(document.getElementById("editor_" + id), {
 	    lineNumbers: true,
 	    extraKeys: {"Ctrl-Space": "autocomplete"},
-	    mode: {name: "javascript", globalVars: true},
+	    mode: language,
 	    theme: "ambiance"
     });
 
