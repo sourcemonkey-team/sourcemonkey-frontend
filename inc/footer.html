@@ -5,17 +5,8 @@
   <script src="bower_components/codemirror/mode/javascript/javascript.js"></script>
   <script src="bower_components/codemirror/mode/css/css.js"></script>
   <script src="bower_components/codemirror/mode/htmlmixed/htmlmixed.js"></script>
-  <script>
-
-   var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-     lineNumbers: true,
-     extraKeys: {"Ctrl-Space": "autocomplete"},
-     mode: "text/html"
-   });
-   function getMode(){
-     return "text/html";
-   }
-   console.log(getMode());
- </script>
+  
+  <script src="js/editorEvents.js"></script>
+  <script src="js/editor.js"></script>
 </body>
 </html>
