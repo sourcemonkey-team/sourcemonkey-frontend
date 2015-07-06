@@ -1,0 +1,44 @@
+.maincontent {
+	margin-top: 5px;
+}
+#tabHead{
+    margin-left: 30px;
+}
+#tabHead .tab {
+    display: inline-block;
+    color: #ddd;
+    background-color: #555;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    padding: 4px 8px;
+    margin: 0 2px;
+    cursor: pointer;
+}
+#tabHead .tab.active {
+	color: #fff;
+    background-color: #222;
+    background: linear-gradient( to bottom, #111, #222);
+}
+
+#tabHead div.tab > button.tab_close{
+    background-color: transparent;
+    border: 0;
+    border-radius: 8px;
+}
+#tabHead div.tab > button.tab_close:hover{
+	background-color: #ddd;
+	color: #555;
+}
+
+#tabHead > button {
+    border-color: #555;
+    border-width: 1px;
+    float: right;
+}
+
+#editor_section div.editor{
+	display: none;
+}
+#editor_section div.editor.active{
+	display: block;
+}
