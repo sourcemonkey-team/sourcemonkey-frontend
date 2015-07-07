@@ -17,24 +17,24 @@ $(function (){
 	$tabHead = $("#tabHead");
 	$editorSection = $("#editor_section");
 
-	newTab("test.js", "javascript", "function test(){test++;}");
+	newTab(guid(), "test.js","function test(){test++;}", "javascript");
 });
 
-function newTab(fileName, language, content){
+function newTab(fileUUID, fileName, content, language){
 	//Find next free id
-	var id = editors.length;
+	var tabID = editors.length;
 	for (var i = editors.length ; i >= 0; i--)
 		if(!editors[i])
-			id = i;
+			tabID = i;
 
 	//Create the HTML elements
-	$tabHead.append('<div class="tab active" data-editor-id="'+id+'" onClick="setActiveEditor($(this).attr(\'data-editor-id\'))"></div>');
-	$tabHead.find( "> div[data-editor-id="+id+"]" ).html(fileName + '<button class="tab_close" onClick="closeTab(this)">x</button>')
+	$tabHead.append('<div class="tab active" data-editor-id="'+tabID+'" onClick="setActiveEditor($(this).attr(\'data-editor-id\'))"></div>');
+	$tabHead.find( "> div[data-editor-id="+tabID+"]" ).html(fileName + '<button class="tab_close" onClick="closeTab($(this).parent().attr(\'data-editor-id\'))"></button>')
 
-	$editorSection.append('<div data-editor-id="'+id+'" id="editor_'+id+'" class="editor active"></div>');
+	$editorSection.append('<div data-editor-id="'+tabID+'" id="editor_'+tabID+'" class="editor active"></div>');
 
 	//Create CodeMirror
-	var newEditor = CodeMirror(document.getElementById("editor_" + id), {
+	var newEditor = CodeMirror(document.getElementById("editor_" + tabID), {
 	    lineNumbers: true,
 	    extraKeys: editorOptions.extraKeys,
 	    mode: language,
@@ -45,25 +45,35 @@ function newTab(fileName, language, content){
 	newEditor.name = fileName;
 	newEditor.language = language;
     newEditor.isSaved = true;
+    newEditor.fileUUID = fileUUID;
+    newEditor.tabID = tabID;
 
     //CodeMirror events
 	newEditor.on("change", function(cm, change) {
-		cm.isSaved = false;
+		if(cm.isSaved){
+			cm.isSaved = false;
+			$("#tabHead div.tab[data-editor-id='"+cm.tabID+"']").addClass("unsaved");
+		}
 	});
 
-	editors[id] = newEditor;
+	editors[tabID] = newEditor;
 	
-	setActiveEditor(id);
+	setActiveEditor(tabID);
 	
 }
 
-function setActiveEditor(id){
-	if (activeEditor != id && editors[id]){
+function setActiveEditor(tabID){
+	if(!editors[tabID])
+		for (var i = 0 ; i < editors.length; i++)
+			if(editors[i])
+				tabID = i;
+
+	if (activeEditor != tabID && editors[tabID]){
 		$("#tabHead div.tab[data-editor-id='"+activeEditor+"']").removeClass("active");
 		$("#editor_section div.editor[data-editor-id='"+activeEditor+"']").removeClass("active");
 		
 		lastActiveEditor = activeEditor;
-		activeEditor = id;
+		activeEditor = tabID;
 
 		$("#tabHead div.tab[data-editor-id='"+activeEditor+"']").addClass("active");
 		$("#editor_section div.editor[data-editor-id='"+activeEditor+"']").addClass("active");
@@ -71,12 +81,49 @@ function setActiveEditor(id){
 }
 
 
-function closeTab(tab){
-	var id = $(tab).parent().attr("data-editor-id");
-	editors[id] = null;
-	$("#tabHead div.tab[data-editor-id='"+id+"']").remove();
-	$("#editor_section div.editor[data-editor-id='"+id+"']").remove();
+function closeTab(tabID){
+	editors[tabID] = null;
+	$("#tabHead div.tab[data-editor-id='"+tabID+"']").remove();
+	$("#editor_section div.editor[data-editor-id='"+tabID+"']").remove();
 	
-	if(activeEditor != id)
-		setActiveEditor(lastActiveEditor != id ? lastActiveEditor : 0);
+	if(activeEditor == tabID)
+		setActiveEditor(lastActiveEditor);
+}
+
+function changeTabName(fileUUID){
+
+}
+
+function getContentFormTab(fileUUID){
+
+}
+
+function saveTab(tabID){
+
+}
+
+function leftTab(){
+	var $prevTab = $("#tabHead div.tab[data-editor-id='"+activeEditor+"']").prev();
+	if(!$prevTab.hasClass("tab"))
+		$prevTab = $("#tabHead div.tab:last-of-type");
+
+	setActiveEditor($prevTab.attr('data-editor-id'));
+}
+
+function rightTab(){
+	var $nextTab = $("#tabHead div.tab[data-editor-id='"+activeEditor+"']").next();
+	if(!$nextTab.hasClass("tab"))
+		$nextTab = $("#tabHead div.tab:first-of-type");
+	
+	setActiveEditor($nextTab.attr('data-editor-id'));
+}
+
+function guid() {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+    s4() + '-' + s4() + s4() + s4();
 }

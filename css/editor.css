@@ -13,21 +13,36 @@
     padding: 4px 8px;
     margin: 0 2px;
     cursor: pointer;
+    min-width: 100px;
 }
-#tabHead .tab.active {
+#tabHead div.tab.active {
 	color: #fff;
     background-color: #222;
     background: linear-gradient( to bottom, #111, #222);
 }
 
-#tabHead div.tab > button.tab_close{
-    background-color: transparent;
+#tabHead div.tab > button.tab_close {
+	background-color: transparent;
     border: 0;
-    border-radius: 8px;
+    border-radius: 6px;
+    font-size: 16px;
+    line-height: 8px;
+    padding: 2px;
+    vertical-align: baseline;
+    margin-left: 6px;
+    float: right;
+    margin-top: 3px;
 }
-#tabHead div.tab > button.tab_close:hover{
+#tabHead div.tab.unsaved button.tab_close:after {
+	content: "○";
+}
+#tabHead div.tab button.tab_close:after {
+	content: "x";
+}
+
+#tabHead div.tab > button.tab_close:hover {
 	background-color: #ddd;
-	color: #555;
+	color: #ddd;
 }
 
 #tabHead > button {
