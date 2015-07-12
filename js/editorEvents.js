@@ -1,38 +1,57 @@
-var isMetaKey1 = false;
-var isMetaKey1Code = 16;
+var isStrg = false;
+var isAlt = false;
+var isShift = false;
+var isTab = false;
 
-var isMetaKey2 = false;
-var isMetaKey2Code = 18;
-
-$(".maincontent").keydown(function(e) {
-	if(!isMetaKey1)
-	    if(e.keyCode == isMetaKey1Code) 
-	    	isMetaKey1 = true;
-}).keyup(function(e) {
-    console.log("key up with keyCode:" + e.keyCode);
-	if(isMetaKey1)
-    	if(e.keyCode == isMetaKey1Code) 
-    		isMetaKey1 = false;
-}); 
+var justTab = true;
 
 $(".maincontent").keydown(function(e) {
-	if(!isMetaKey2)
-	    if(e.keyCode == isMetaKey2Code) 
-	    	isMetaKey2 = true;
+	if(!isShift)
+	    if(e.keyCode == 16) 
+	    	isShift = true;
+	if(!isStrg)
+	    if(e.keyCode == 17) 
+	    	isStrg = true;
+	if(!isAlt)
+	    if(e.keyCode == 18) 
+	    	isAlt = true;
+	if(!isTab)
+	    if(e.keyCode == 9) 
+	    	isTab = true;
 }).keyup(function(e) {
-	if(isMetaKey2)
-    	if(e.keyCode == isMetaKey2Code) 
-    		isMetaKey2 = false;
+	if(isShift)
+    	if(e.keyCode == 16) 
+    		isShift = false;
+  	if(isStrg)
+    	if(e.keyCode == 17) 
+    		isStrg = false;
+  	if(isAlt)
+    	if(e.keyCode == 18) 
+    		isAlt= false;
+   	if(isTab)
+    	if(e.keyCode == 9) {
+    		isTab= false;
+    		justTab = true;
+    	}
 }); 
-
 
 $(document).keydown(function(e) {
-	if(isMetaKey1){
-		if(e.keyCode == 9 || e.keyCode == 39) rightTab();
-		else if(e.keyCode == 37) leftTab();	
+	if(isShift && isTab){
+		if (justTab) rightTab();
+		justTab = false;
+		
+		if(e.keyCode == 39){
+			rightTab();
+		} 
+		else if(e.keyCode == 37){
+			leftTab();
+		}
+	}
+	if(isAlt && !isTab){
+		if(e.keyCode == 83) saveTab(activeEditor);
+		else if(e.keyCode == 84) newTab(guid(), "style.css","");
 	}
 });
 
-$( "#tabHead > button.tab_new" ).click(function() {
-	newTab(guid(), "test.js","function test(){test++;}", "javascript");
-});
+
+

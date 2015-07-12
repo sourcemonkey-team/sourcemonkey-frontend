@@ -3,6 +3,7 @@
 }
 #tabHead{
     margin-left: 30px;
+    height: 26px;
 }
 #tabHead .tab {
     display: inline-block;
@@ -15,13 +16,13 @@
     cursor: pointer;
     min-width: 100px;
 }
-#tabHead div.tab.active {
+#tabHead .tab.active {
 	color: #fff;
     background-color: #222;
     background: linear-gradient( to bottom, #111, #222);
 }
 
-#tabHead div.tab > button.tab_close {
+#tabHead .tab > button.tab_close {
 	background-color: transparent;
     border: 0;
     border-radius: 6px;
@@ -33,14 +34,14 @@
     float: right;
     margin-top: 3px;
 }
-#tabHead div.tab.unsaved button.tab_close:after {
+#tabHead .tab.unsaved button.tab_close:after {
 	content: "○";
 }
-#tabHead div.tab button.tab_close:after {
+#tabHead .tab button.tab_close:after {
 	content: "x";
 }
 
-#tabHead div.tab > button.tab_close:hover {
+#tabHead .tab > button.tab_close:hover {
 	background-color: #ddd;
 	color: #ddd;
 }
