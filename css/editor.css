@@ -6,20 +6,23 @@
     height: 26px;
 }
 #tabHead .tab {
-    display: inline-block;
-    color: #ddd;
-    background-color: #555;
-    border-top-right-radius: 8px;
-    border-top-left-radius: 8px;
-    padding: 4px 8px;
-    margin: 0 2px;
-    cursor: pointer;
-    min-width: 100px;
+	display: inline-block;
+	color: #111;
+	background-color: #555;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+	padding: 4px 8px;
+	margin: 0 2px;
+	cursor: pointer;
+	min-width: 128px;
+	outline: 0;
+	border: 0;
+	transform: rotate3d(0,0,0,47deg);
 }
 #tabHead .tab.active {
-	color: #fff;
+	color: #eee;
     background-color: #222;
-    background: linear-gradient( to bottom, #111, #222);
+    background: linear-gradient( to bottom, #000, #111);
 }
 
 #tabHead .tab > button.tab_close {
@@ -44,12 +47,6 @@
 #tabHead .tab > button.tab_close:hover {
 	background-color: #ddd;
 	color: #ddd;
-}
-
-#tabHead > button {
-    border-color: #555;
-    border-width: 1px;
-    float: right;
 }
 
 #editor_section div.editor{

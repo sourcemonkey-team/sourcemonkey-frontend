@@ -17,7 +17,7 @@ $(function (){
 	$tabHead = $("#tabHead");
 	$editorSection = $("#editor_section");
 
-	newTab(guid(), "test.js","function hey(){\n\talert(\"Hallo World\");\n}");
+	newTab(guid(), "test.js","//Your Hello World program\nfunction sayHello(){\n\talert(\"Hello World \\n Welcome to SourceMonkey\");\n}\n\nsayHello();");
 });
 
 function newTab(fileUUID, fileName, content){
@@ -28,8 +28,8 @@ function newTab(fileUUID, fileName, content){
 			tabID = i;
 
 	//Create the HTML elements
-	$tabHead.append('<div class="tab active" data-editor-id="'+tabID+'" ></div>');
-	$tabHead.find( "> div[data-editor-id="+tabID+"]" ).html(fileName + '<button class="tab_close" onClick="closeTab($(this).parent().attr(\'data-editor-id\'))"></button>')
+	$tabHead.append('<button class="tab active" data-editor-id="'+tabID+'" ></button>');
+	$tabHead.find( "> .tab[data-editor-id="+tabID+"]" ).html(fileName + '<button class="tab_close" onClick="closeTab($(this).parent().attr(\'data-editor-id\'))"></button>')
 
 	$editorSection.append('<div data-editor-id="'+tabID+'" id="editor_'+tabID+'" class="editor active"></div>');
 
@@ -61,7 +61,7 @@ function newTab(fileUUID, fileName, content){
 		setActiveEditor($(this).attr('data-editor-id'));
 
 		var $movingTab = $(this);
-		var movingDelay = setTimeout(startMoving, 220);
+		var movingDelay = setTimeout(startMoving, 120);
 		
 		$(this).on("mouseup",function(){
 			clearTimeout(movingDelay);
